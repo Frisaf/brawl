@@ -47,20 +47,22 @@ def main():
 
     while playing:
         round += 1
+        player_one_roll = random.randint(1, 20)
+        player_two_roll = random.randint(1, 20)
 
         print(f"{CYAN}ROUND {round}")
 
-        if player_one_class == "warrior":
-            player_one_roll = random.randint(1, 20) + random.randint(1, 4)
+        # if player_one_class == "warrior":
+        #     player_one_roll = random.randint(1, 20) + random.randint(1, 4)
         
-        else:
-            player_one_roll = random.randint(1, 20)
+        # else:
+        #     player_one_roll = random.randint(1, 20)
         
-        if player_two_class == "warrior":
-            player_two_roll = random.randint(1, 20) + random.randint(1, 4)
+        # if player_two_class == "warrior":
+        #     player_two_roll = random.randint(1, 20) + random.randint(1, 4)
         
-        else:
-            player_two_roll = random.randint(1, 20)
+        # else:
+        #     player_two_roll = random.randint(1, 20)
 
         print(f"{GREEN}PLAYER 1:{RESET} {player_one_roll}\n{GREEN}PLAYER 2:{RESET} {player_two_roll}")
 
@@ -100,6 +102,13 @@ def main():
                 else:
                     print(f"{GREEN}PLAYER 2:{RESET} Please answer yes or no")
         
+        if player_one_class == "warrior" and player_one_roll < player_two_roll:
+            block_question = input(f"{GREEN}PLAYER 1:{RESET} You are a warrior. Do you want to block damage from {player_two}?\nType yes or no: ")
+
+            while True:
+                if block_question == "yes":
+                    player_two_roll = 0
+        
         if player_one_roll > player_two_roll:
             player_two_hp -= player_one_roll - player_two_roll
 
@@ -114,7 +123,7 @@ def main():
             print("Your rolls were equal! No one loses HP...")
         
         if player_one_class == "healer" and healed_one == False:
-            heal_answer = input(f"{GREEN}PLAYER 1: You are a healer, do you want to heal 1d4 of damage? (capped at 10 HP)\n>{RESET} ")
+            heal_answer = input(f"{GREEN}PLAYER 1: You are a healer, do you want to heal 1d4 of damage?\nType yes or no: {RESET} ")
 
             while True:
                 if heal_answer == "yes":
@@ -131,7 +140,7 @@ def main():
                     print(f"{GREEN}PLAYER 1: Please answer yes or no.")
         
         if player_two_class == "healer" and healed_two == False:
-            heal_answer = input(f"{GREEN}PLAYER 2: You are a healer, do you want to heal 1d4 of damage? (capped at 10 HP)\n>{RESET} ")
+            heal_answer = input(f"{GREEN}PLAYER 2: You are a healer, do you want to heal 1d4 of damage?\nType yes or no: {RESET} ")
 
             while True:
                 if heal_answer == "yes":
