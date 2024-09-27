@@ -23,7 +23,14 @@ while True:
     else:
         break
 
-player_two = input(f"{GREEN}PLAYER 2:{RESET} Type your name and press ENTER\n> ").title()
+while True:
+    player_two = input(f"{GREEN}PLAYER 2:{RESET} Type your name and press ENTER\n> ").title()
+
+    if player_two == player_one:
+        print("Your name cannot be the same as Player 1.")
+    
+    else:
+        break
 
 print(f"{CYAN}AVAILABLE CLASSES:{GREEN}\nWarrior:{RESET} You have a shield. Once per game, you can block 1d4 of damage from your opponent\n{GREEN}Healer:{RESET} You have magical healing abilities. Once per game, you can heal yourself for 1d4 HP\n{GREEN}Thief:{RESET} You are a master at pickpocketing. Once per game, you can steal 1d4 of your opponent's roll")
 
@@ -63,10 +70,12 @@ def main():
                 steal_answer = input(f"{GREEN}{player_one.upper()}:{RESET} You are a thief. Do you want to steal 1d4 from {player_two}'s roll?\nType yes or no: ").lower()
 
                 if steal_answer == "yes":
-                    player_two_roll -= random.randint(1, 4)
+                    stolen_roll = random.randint(1, 4)
+                    player_one_roll += stolen_roll
+                    player_two_roll -= stolen_roll
                     stolen_roll_one = True
 
-                    print(f"{GREEN}{player_two.upper()}:{RESET} Your new roll is {player_two_roll}")
+                    print(f"{GREEN}{player_two.upper()}:{RESET} {player_one} stole {stolen_roll} from you. Your new roll is {player_two_roll}")
                     break
                 
                 elif steal_answer == "no":
@@ -82,10 +91,12 @@ def main():
                 steal_answer = input(f"{GREEN}{player_two.upper()}:{RESET} You are a thief. Do you want to steal 1d4 from {player_two}'s roll?\nType yes or no: ").lower()
 
                 if steal_answer == "yes":
-                    player_one_roll -= random.randint(1, 4)
+                    stolen_roll = random.randint(1, 4)
+                    player_two_roll += stolen_roll
+                    player_one_roll -= stolen_roll
                     stolen_roll_two = True
 
-                    print(f"{GREEN}{player_one.upper()}: Your new roll is {player_one_roll}")
+                    print(f"{GREEN}{player_one.upper()}: {player_two} stole {stolen_roll} from you. Your new roll is {player_one_roll}")
                     break
                 
                 elif steal_answer == "no":
@@ -121,7 +132,7 @@ def main():
 
                 if block_question == "yes":
                     player_one_roll -= random.randint(1, 4)
-                    blocked_one = True
+                    blocked_two = True
                     
                     print(f"{GREEN}{player_one.upper()}:{RESET} Your new roll is {player_one_roll}")
                     break
