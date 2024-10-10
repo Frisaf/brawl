@@ -1,0 +1,2 @@
+# JA JAG VET
+att spelarnas start-hp inte är 10 som det står i din textfil, men ökar inte större värden i både tärningsslagen och hp spänningen? Det gör det enligt mig iallafall. Dessutom skulle klasserna inte fungera lika bra om man slog 1d6 eller 1d10 istället för 1d20, ENLIGT MIG. Tack för mig, hoppas du gillar spelet.
