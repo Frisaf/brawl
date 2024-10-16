@@ -1,4 +1,4 @@
-import random, time, sys
+import random, time, sys, os
 
 GREEN = "\033[32m"
 CYAN = "\033[36m"
@@ -145,12 +145,12 @@ def main():
                     print(f"{GREEN}{player_two.upper()}:{RESET} Please answer yes or no")
         
         if player_one_roll > player_two_roll:
-            player_two_hp -= player_one_roll - player_two_roll
+            player_two_hp -= (player_one_roll - player_two_roll)/2
 
             print(f"{GREEN}{player_one.upper()}'s HEALTH:{RESET} {player_one_hp}\n{GREEN}{player_two.upper()}'s HEALTH:{RESET} {player_two_hp}")
 
         elif player_one_roll < player_two_roll:
-            player_one_hp -= player_two_roll - player_one_roll
+            player_one_hp -= (player_two_roll - player_one_roll)/2
 
             print(f"{GREEN}{player_one.upper()}'s HEALTH:{RESET} {player_one_hp}\n{GREEN}{player_two.upper()}'s HEALTH:{RESET} {player_two_hp}")
 
@@ -214,6 +214,7 @@ def end_of_game():
         print(f"{CYAN}Restarting...")
         
         time.sleep(3)
+        os.system('cls' if os.name == 'nt' else 'clear')
         main()
     
     elif play_again == "no":
